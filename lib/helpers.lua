@@ -29,6 +29,59 @@ t.writeFile = function(filepath, data)
 	file = nil
 end
 
+t.runCmd = function(command)
+	local handle = io.popen(command)
+	local result = handle:read("*a")
+	handle:close()
+
+	if not result then 
+		print('Error with cmd ' .. command) 
+	end
+
+	return result
+end
+
+t.runCmdSilent = function(command)
+	local success = nil
+	local signal  = nil
+	local number  = nil
+
+	success, signal, number = os.execute(command)
+
+	if not success then print('Error running command') return false end
+
+	return true
+end
+
+function t.splitTextToTable(str)
+	t={}
+	for line in str:gmatch("[^\r\n]+") do  
+		table.insert(t, line)
+	end
+	return t
+end
+
+t.getFilenamesFromDir = function(dir)
+	local filenames = {}
+
+	-- Check if dir exists
+	if t.runCmdSilent('cd ' .. dir) then
+		-- returns filenames in a chunk of text separated by newlines
+		local lsReturnData = t.runCmd('ls ' .. dir)
+		print(lsReturnData)
+		filenames = t.splitTextToTable(lsReturnData)
+	else
+		print("Not a valid dir: " .. dir)
+		return nil
+	end
+
+	for _,v in ipairs(filenames) do
+		print(v)
+	end
+
+	return filenames
+end
+
 function string:split( inSplitPattern, outResults )
 
    if not outResults then
