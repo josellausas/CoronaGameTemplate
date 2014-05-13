@@ -1,0 +1,34 @@
+settings =
+{
+	iphone = 
+	{
+		plist = 
+		{
+			UIAppFonts = 
+			{
+				"MarkerFelt.ttc",
+			},
+			UIStatusBarHidden = true,
+			CFBundleIconFile = "Icon.png",
+			CFBundleIconFiles = 
+			{
+				"Icon.png",
+				"Icon@2x.png",
+				"Icon-72.png",
+			},
+		},
+	},
+	android = 
+	{
+		usesPermissions = 
+		{
+			"android.permission.VIBRATE",
+		},
+	},
+    orientation =
+    {
+        default = "landscapeRight",
+        supported = {"landscapeRight"},
+        
+    },
+}
