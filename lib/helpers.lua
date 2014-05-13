@@ -21,7 +21,7 @@ local t = {}
 --			data 	 : the Data to write
 -- out: 	None
 -- Purpose:	Opens a file and writes to it
-t.writeFile = function(filepath, data)
+function t.writeFile(filepath, data)
 	local path = system.pathForFile(filepath, system.DocumentsDirectory)
 	local file = io.open(path, "w")
 	file:write(data)
@@ -29,7 +29,7 @@ t.writeFile = function(filepath, data)
 	file = nil
 end
 
-t.runCmd = function(command)
+function t.runCmd(command)
 	local handle = io.popen(command)
 	local result = handle:read("*a")
 	handle:close()
@@ -41,7 +41,7 @@ t.runCmd = function(command)
 	return result
 end
 
-t.runCmdSilent = function(command)
+function t.runCmdSilent(command)
 	local success = nil
 	local signal  = nil
 	local number  = nil
@@ -61,7 +61,7 @@ function t.splitTextToTable(str)
 	return t
 end
 
-t.getFilenamesFromDir = function(dir)
+ function t.getFilenamesFromDir(dir)
 	local filenames = {}
 
 	-- Check if dir exists
