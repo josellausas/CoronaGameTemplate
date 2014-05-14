@@ -83,7 +83,7 @@ print = function(message)
     if funcName then
     	funcName = funcName .. "()"
     else
-    	funcName = "()"
+    	funcName = "<nameless>()"
     end
 
     -- Build a colorful and formatted print log. 
