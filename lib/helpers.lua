@@ -92,12 +92,12 @@ end
 	local filenames = {}
 
 	-- Check if dir exists
-	if t.runCmdSilent('cd ' .. dir) then
+	if helpers.runCmdSilent('cd ' .. dir) then
 		-- returns filenames in a chunk of text separated by newlines
-		local lsReturnData = t.runCmd('ls ' .. dir)
+		local lsReturnData = helpers.runCmd('ls ' .. dir)
 		
 		-- gets a table of filenames
-		filenames = t.splitTextToTable(lsReturnData)
+		filenames = helpers.splitTextToTable(lsReturnData)
 	else
 		print("Not a valid dir: " .. dir)
 		return nil
